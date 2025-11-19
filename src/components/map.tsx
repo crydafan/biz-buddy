@@ -29,8 +29,13 @@ export function Map({ setSelectedBiz }: MapProps) {
         mapId: "DEMO_MAP_ID",
       });
 
-      map.addListener("click", async (e) => {
-        if (e.placeId) {
+      map.addListener(
+        "click",
+        async (e: { placeId: string | null | undefined; stop: () => void }) => {
+          if (!e.placeId) {
+            return;
+          }
+
           e.stop();
 
           const place = new Place({
@@ -64,7 +69,7 @@ export function Map({ setSelectedBiz }: MapProps) {
           setSelectedBiz(biz);
           console.log(place.toJSON());
         }
-      });
+      );
     };
 
     loadMap();
