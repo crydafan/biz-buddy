@@ -1,6 +1,6 @@
 export type BizType = {
   id: string;
-  photo: google.maps.places.Photo | null;
+  photo: string | null;
   name: string;
   address: string;
   summary: string;

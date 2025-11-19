@@ -21,7 +21,7 @@ export function Biz({ selectedBiz }: BizProps) {
 
       {selectedBiz.photo && (
         <Image
-          src={selectedBiz.photo.getURI()}
+          src={selectedBiz.photo}
           alt={selectedBiz.name}
           width={400}
           height={300}

@@ -56,7 +56,7 @@ export function Map({ setSelectedBiz }: MapProps) {
 
           const biz: BizType = {
             id: place.id,
-            photo: place.photos?.[0] || null,
+            photo: place.photos?.[0].getURI() || null,
             name: place.displayName!,
             address: place.formattedAddress!,
             summary: place.editorialSummary || "",
