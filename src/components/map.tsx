@@ -3,7 +3,11 @@
 import { importLibrary, setOptions } from "@googlemaps/js-api-loader";
 import { useEffect, useRef } from "react";
 
-export function Map() {
+interface MapProps {
+  setSelectedBiz: (biz: Biz) => void;
+}
+
+export function Map({ setSelectedBiz }: MapProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -34,16 +38,36 @@ export function Map() {
           });
 
           await place.fetchFields({
-            fields: ["displayName", "formattedAddress", "location"],
+            fields: [
+              "displayName",
+              "photos",
+              "formattedAddress",
+              "location",
+              "reviews",
+              "editorialSummary",
+            ],
           });
 
+          const biz: Biz = {
+            id: place.id,
+            photo: place.photos?.[0] || null,
+            name: place.displayName!,
+            address: place.formattedAddress!,
+            summary: place.editorialSummary || "",
+            location: {
+              lat: place.location!.lat(),
+              lng: place.location!.lng(),
+            },
+          };
+
+          setSelectedBiz(biz);
           console.log(place.toJSON());
         }
       });
     };
 
     loadMap();
-  }, []);
+  }, [setSelectedBiz]);
 
   return <div className="h-[600px]" ref={ref}></div>;
 }
