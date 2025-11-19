@@ -1,3 +1,5 @@
+import { MapComponent } from "@/components/map";
+
 export default function Home() {
   return (
     <div>
@@ -7,6 +9,7 @@ export default function Home() {
       </header>
       <main>
         <p>Here is where the map goes</p>
+        <MapComponent />
       </main>
       <footer>
         <p>@crydafan on X</p>
