@@ -1,4 +1,4 @@
-type Biz = {
+export type BizType = {
   id: string;
   photo: google.maps.places.Photo | null;
   name: string;

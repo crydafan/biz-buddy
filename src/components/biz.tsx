@@ -1,7 +1,8 @@
+import { BizType } from "@/types/biz";
 import Image from "next/image";
 
 interface BizProps {
-  selectedBiz: Biz | null;
+  selectedBiz: BizType | null;
 }
 
 export function Biz({ selectedBiz }: BizProps) {

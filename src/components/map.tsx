@@ -1,10 +1,11 @@
 "use client";
 
+import { BizType } from "@/types/biz";
 import { importLibrary, setOptions } from "@googlemaps/js-api-loader";
 import { useEffect, useRef } from "react";
 
 interface MapProps {
-  setSelectedBiz: (biz: Biz) => void;
+  setSelectedBiz: (biz: BizType) => void;
 }
 
 export function Map({ setSelectedBiz }: MapProps) {
@@ -48,7 +49,7 @@ export function Map({ setSelectedBiz }: MapProps) {
             ],
           });
 
-          const biz: Biz = {
+          const biz: BizType = {
             id: place.id,
             photo: place.photos?.[0] || null,
             name: place.displayName!,
