@@ -3,7 +3,7 @@
 import { importLibrary, setOptions } from "@googlemaps/js-api-loader";
 import { useEffect, useRef } from "react";
 
-export function MapComponent() {
+export function Map() {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
