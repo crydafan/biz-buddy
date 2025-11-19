@@ -14,6 +14,7 @@ export function MapComponent() {
       });
 
       const { Map } = await importLibrary("maps");
+      const { Place } = await importLibrary("places");
 
       const position = { lat: -34.397, lng: 150.644 };
 
@@ -21,6 +22,23 @@ export function MapComponent() {
         center: position,
         zoom: 8,
         mapId: "DEMO_MAP_ID",
+      });
+
+      map.addListener("click", async (e) => {
+        if (e.placeId) {
+          e.stop();
+
+          const place = new Place({
+            id: e.placeId,
+            requestedLanguage: "en",
+          });
+
+          await place.fetchFields({
+            fields: ["displayName", "formattedAddress", "location"],
+          });
+
+          console.log(place.toJSON());
+        }
       });
     };
 
